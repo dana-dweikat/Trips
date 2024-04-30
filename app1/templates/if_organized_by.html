@@ -1,0 +1,76 @@
+{% extends './base.html' %}
+{% block content %}
+<title>Edit </title>
+
+<p>Edit trip </p>
+<form class="add_Form" action="{% url 'app1:edit' pk=trip.pk %}" method="POST">
+  {% csrf_token %}
+  <!-- destination Input > type :"text" -->
+  <div class="d-flex align-items-center gap-2 mb-3">
+    <label for="title" class="col-sm-2 col-form-label">Destination : </label>
+    <div style="flex: 1.4" class="col-sm-4">
+      <input required type="text" name="destination" class="form-control w-50" id="destination"
+        value="{{ trip.destination }}">
+    </div>
+  </div>
+  <!-- start_date  Input > type :"date" -->
+  <div class="d-flex align-items-center gap-2 mb-3">
+    <label for="title" class="col-sm-2 col-form-label">start_date : </label>
+    <div style="flex: 1.4" class="col-sm-4">
+      <input required type="date" name="start_date" class="form-control w-50" id="start_date"
+        value="{{ trip.start_date|date:'Y-m-d' }}">
+    </div>
+  </div>
+  <!-- end_date  Input > type :"date" -->
+  <div class="d-flex align-items-center gap-2 mb-3">
+    <label for="title" class="col-sm-2 col-form-label">end_date : </label>
+    <div style="flex: 1.4" class="col-sm-4">
+      <input required type="date" name="end_date" class="form-control w-50" id="end_date"
+        value="{{ trip.end_date|date:'Y-m-d' }}">
+    </div>
+  </div>
+
+  <!-- start_date Input > type :"textarea" -->
+  <div class="form-group d-flex">
+    <label for="exampleFormControlTextarea1" class="me-2">Itinerary : </label>
+    <textarea class="form-control w-50 " name="Itinerary" id="exampleFormControlTextarea1"
+      rows="3">{{ trip.Itinerary }}</textarea>
+  </div>
+  <div class="submit-btn d-flex justify-content-center ">
+
+    <div class="btn_div d-flex justify-content-center">
+      <button style="width: fit-content;
+        box-shadow: 2px 3px 0px 1px rgba(0, 0, 0, 1)
+        , 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        border: 2px solid black;" type="submit" class="btn btn-outline-dark btn-shadow mt-3">
+        Update
+      </button>
+
+      <a href="{% url 'app1:delete' pk=trip.id %}" class="btn btn-outline-dark btn-shadow mt-3 text-light bg-danger"
+        style="text-decoration: none; width: fit-content; box-shadow: 2px 3px 0px 1px rgba(0, 0, 0, 1), 0 2px 10px 0 rgba(0, 0, 0, 0.12); border: 2px solid black;">
+        Delete this trip
+      </a>
+
+
+
+
+</form>
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+  <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+{% endblock content %}

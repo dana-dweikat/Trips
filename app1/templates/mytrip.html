@@ -1,0 +1,73 @@
+{% extends './base.html' %}
+{% block content %}
+<title>My trips </title>
+
+
+<div class="container text-center mt-5">
+    <p> MY trip</p>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>destination</th>
+                <th>start date </th>
+                <th>end date </th>
+                <th> organizer </th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for trip in my_trips %}
+            <tr>
+                <td>{{trip.destination}}</td>
+                <td>{{trip.start_date}}</td>
+                <td>{{trip.end_date}}</td>
+                <td>{{trip.organizer.first_name}}</td>
+                <td><a href="{% url 'app1:cancel' pk=trip.id %}">Cancel</a></td>
+            </tr>
+
+        {% endfor %}
+    </table>
+</div>
+
+<br>
+<br>
+<br>
+
+<p>other trip you can join </p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>destination</th>
+            <th>start date </th>
+            <th>end date </th>
+            <th> organizer </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for trip in other_trips %}
+        <tr>
+            <td>{{trip.destination}}</td>
+            <td>{{trip.start_date}}</td>
+            <td>{{trip.end_date}}</td>
+            <td>{{trip.organizer.first_name}}</td>
+            <td><a href="{% url 'app1:join' pk=trip.id %}">Join</a></td>
+        </tr>
+
+    {% endfor %}
+</table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock content %}

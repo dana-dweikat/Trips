@@ -1,0 +1,52 @@
+{% extends './base.html' %}
+{% block content %}
+<title>Details</title>
+
+
+<div class="container text-left mt-6">
+
+    <div class="row mt-5" >
+        <div class=" col-lg-6" style="border: 2px solid black; max-width: 40%;">
+            <div>
+
+                <p>organized_by: {{trip.organizer.first_name}}</p>
+                <p>created on: {{trip.created_at}}</p>
+                <p>Last updated : {{trip.updated_at}}</p>
+                <p>end date: {{ trip.end_date }} </p>
+                <p>Itinerary: {{trip.Itinerary}} </p>
+
+            </div>
+        </div>
+
+
+        <div class=" col-lg-6" style="border: 2px solid black; max-width: 40%; margin-left: 100px;">
+            <div class="pairent">
+                <h1 class="h3">Travelers on this trip :</h1>
+
+                {% for user in trip.travelers.all %}
+                <p>{{user.first_name}}</p>
+                {% endfor %}
+
+                <a class="my_trip" style="text-decoration: underline;" href="{% url 'app1:my_trips' %}">Go to
+                    my trip </a>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock content %}
